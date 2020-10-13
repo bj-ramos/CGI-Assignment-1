@@ -9,7 +9,8 @@ window.onload = function init() {
     var vertices = [
         vec2(-0.5,-0.5),
         vec2(0.5,-0.5),
-        vec2(0,0.5)
+        vec2(0,0.5),
+        vec2(0,-0.5)
     ];
     
     // Configure WebGL
@@ -29,14 +30,14 @@ window.onload = function init() {
     var vPosition = gl.getAttribLocation(program, "vPosition");
     gl.vertexAttribPointer(vPosition, 2, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(vPosition);
-    render();
-
+   
+render();
 
 
     // Load shaders and initialize attribute buffers for the outline ?????
     var program = initShaders(gl, "vertex-shader", "fragment-shader-outline");
     gl.useProgram(program);
-
+ 
     renderLines();
 
 
@@ -48,5 +49,11 @@ function render() {
 }
 
 function renderLines() {
-    gl.drawArrays(gl.LINE_LOOP, 0, 3);
+    //gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.drawArrays(gl.LINES, 2, 2);
+    gl.drawArrays(gl.LINES, 1, 2);
+    gl.drawArrays(gl.LINES, 0, 2);
+    gl.drawArrays(gl.TRIANGLES, 1, 3);
+
+
 }
